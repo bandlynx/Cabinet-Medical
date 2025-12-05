@@ -1,84 +1,49 @@
-🏥 Cabinet Médical – Gestion de consultations (Java Swing & MySQL)
+Cabinet Médical – Application Java
 
-Ce projet est une application Desktop développée en Java Swing, permettant de gérer un cabinet médical :
-patients, médecins, consultations, paiements, rendez-vous, ainsi que les bilans journaliers et mensuels.
+Ce projet est une application Desktop réalisée en Java Swing avec une base de données MySQL.
+Elle permet de gérer les principales opérations d’un cabinet médical : patients, médecins, consultations, paiements et rendez-vous.
 
-🚀 Fonctionnalités principales
-👤 Gestion des patients
+I.Fonctionnalités :
 
-Ajouter, modifier, supprimer un patient
+-Gestion des patients
 
-Consulter la liste des patients
+-Gestion des médecins
 
-Recherche dynamique
+-Gestion des consultations
 
-🩺 Gestion des médecins
+-Gestion des rendez-vous
 
-Ajouter un médecin
+-Gestion des paiements
 
-Modification et suppression
+-Bilans journaliers et mensuels
 
-Interface dédiée (MedecinFrame)
+-Authentification (écran de connexion)
 
-📅 Gestion des rendez-vous
+II.Structure du projet
 
-Création de rendez-vous
+model : classes représentant les entités (Patient, Medecin, Consultation…)
 
-Association patient → médecin
+dao : accès à la base de données (CRUD via JDBC)
 
-Planning par jour / par médecin
+ui : interfaces graphiques (Java Swing)
 
-💳 Gestion des paiements
+util : connexion à la base (DBConnection) et gestion de session
 
-Ajout d’un paiement lié à une consultation
+III.Technologies utilisées :
 
-Affichage de l’historique des paiements
+-Java (Swing)
 
-🔍 Bilans
+-MySQL
 
-Bilan journalier
+-JDBC
 
-Bilan mensuel
+-NetBeans
 
-Statistiques sur les consultations et revenus
+IV.Configuration 
 
-🔐 Authentification
-
-Écran de login (LoginFrame)
-
-Gestion des utilisateurs (secrétaire / médecin)
-
-📂 Structure du projet
-src/
- └── ma/cabinet
-     ├── dao/        → Accès aux données (PatientDAO, MedecinDAO, …)
-     ├── model/      → Classes métier (Patient, Consultation, Paiement…)
-     ├── ui/         → Interfaces graphiques (Swing)
-     └── util/       → Connexion DB & gestion de session
-
-🛠️ Technologies utilisées
-
-Java 8+
-
-Java Swing
-
-MySQL
-
-JDBC
-
-NetBeans IDE
-
-⚙️ Configuration de la base de données
-
-Créer une base MySQL :
-
-CREATE DATABASE cabinet_medical;
-
-
-Mettre vos identifiants dans :
+Modifier les identifiants de connexion dans :
 
 src/ma/cabinet/util/DBConnection.java
-
 
 Exemple :
 
@@ -86,24 +51,6 @@ String url = "jdbc:mysql://localhost:3306/cabinet_medical";
 String user = "root";
 String password = "";
 
+Exécution
 
-Importer le script SQL fourni (si tu veux, je te génère un script complet).
-
-▶️ Exécution
-
-Depuis NetBeans :
-Run Project
-
-ou via terminal :
-
-javac -d bin src/ma/cabinet/**/*.java
-java -cp bin ma.cabinet.Main
-
-👤 Auteur
-
-Ismail (bandlynx)
-Projet académique — Application Java Swing pour gestion de cabinet médical.
-
-📄 Licence
-
-Ce projet est fourni à but éducatif.
+Ouvrir le projet dans NetBeans et cliquer sur Run Project.
