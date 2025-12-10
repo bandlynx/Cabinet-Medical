@@ -66,7 +66,7 @@ public class PanneauConsultation extends JPanel {
 
     private void charger() {
         try {
-            // Remplir les combos -----------------------
+            // Remplir les combos
             cbPatient.removeAllItems();
             for (Patient p : patientDAO.findAll()) cbPatient.addItem(p);
 
@@ -79,24 +79,20 @@ public class PanneauConsultation extends JPanel {
             cbRdv.removeAllItems();
             for (RendezVous r : rdvDAO.findAll()) cbRdv.addItem(r);
 
-            // Charger les consultations ----------------
+            // Charger les consultations
             model.setRowCount(0);
 
             Utilisateur u = Session.getCurrentUser();
-            List<Consultation> data;
-
-            // date du jour (pour vue "journalière" médecin)
-            Date today = new Date(System.currentTimeMillis());
-
-            if (u instanceof Medecin med) {
-                // Médecin connecté : ses consultations du jour
-                data = consultDAO.findByMedecinAndDate(med.getId(), today);
-            } else {
-                // Assistant (ou autre) : toutes les consultations
-                data = consultDAO.findAll();
-            }
+            List<Consultation> data = consultDAO.findAll(); // On récupère tout d'abord
 
             for (Consultation c : data) {
+                // FILTRAGE JAVA : Si c'est un médecin, on ne montre que les siennes
+                if (u instanceof Medecin) {
+                    if (c.getIdMedecin() != u.getId()) {
+                        continue; // On saute ce tour de boucle si ce n'est pas ce médecin
+                    }
+                }
+
                 model.addRow(new Object[]{
                         c.getId(),
                         c.getDateConsultation(),

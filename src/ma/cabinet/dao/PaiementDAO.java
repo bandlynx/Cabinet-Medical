@@ -2,15 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package ma.cabinet.dao;
+
 import ma.cabinet.model.BilanMensuel;
 import ma.cabinet.model.BilanJour;
+import ma.cabinet.model.Paiement;
+import ma.cabinet.util.DBConnection;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import ma.cabinet.model.Paiement;
-import ma.cabinet.util.DBConnection;
 
 public class PaiementDAO {
 
@@ -61,21 +67,57 @@ public class PaiementDAO {
 
         return liste;
     }
-      public BilanMensuel getBilanMensuel(int annee, int mois) throws SQLException {
-        String sql = """
-            SELECT COUNT(*) AS nbConsult,
-                   COALESCE(SUM(montant), 0) AS ca
-            FROM paiement
-            WHERE statut = 'VALIDE'
-              AND YEAR(date_paiement) = ?
-              AND MONTH(date_paiement) = ?
-            """;
+
+    // =============================================================
+    //                      BILAN MENSUEL (Global)
+    // =============================================================
+
+    /**
+     * Méthode originale : Bilan global (pour l'assistant)
+     */
+    public BilanMensuel getBilanMensuel(int annee, int mois) throws SQLException {
+        return getBilanMensuel(annee, mois, null);
+    }
+
+    /**
+     * Méthode surchargée : Bilan filtré par médecin (si idMedecin != null)
+     */
+    public BilanMensuel getBilanMensuel(int annee, int mois, Integer idMedecin) throws SQLException {
+        String sql;
+
+        if (idMedecin != null) {
+            // Filtrer par médecin via la table consultation
+            sql = """
+                SELECT COUNT(p.id) AS nbConsult,
+                       COALESCE(SUM(p.montant), 0) AS ca
+                FROM paiement p
+                JOIN consultation c ON p.id_consultation = c.id
+                WHERE p.statut = 'VALIDE'
+                  AND YEAR(p.date_paiement) = ?
+                  AND MONTH(p.date_paiement) = ?
+                  AND c.id_medecin = ?
+                """;
+        } else {
+            // Global (Assistant)
+            sql = """
+                SELECT COUNT(*) AS nbConsult,
+                       COALESCE(SUM(montant), 0) AS ca
+                FROM paiement
+                WHERE statut = 'VALIDE'
+                  AND YEAR(date_paiement) = ?
+                  AND MONTH(date_paiement) = ?
+                """;
+        }
 
         try (Connection cnx = DBConnection.getConnection();
              PreparedStatement ps = cnx.prepareStatement(sql)) {
 
             ps.setInt(1, annee);
             ps.setInt(2, mois);
+
+            if (idMedecin != null) {
+                ps.setInt(3, idMedecin);
+            }
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
@@ -88,30 +130,63 @@ public class PaiementDAO {
         return new BilanMensuel(annee, mois, 0, 0.0);
     }
 
+    // =============================================================
+    //                      DÉTAILS JOURNALIERS
+    // =============================================================
+
     /**
-     * Détail jour par jour : évolution du nombre de consultations
-     * et du chiffre d'affaires dans le mois.
+     * Méthode originale : Détails globaux (pour l'assistant)
      */
     public List<BilanJour> getDetailsBilanMensuel(int annee, int mois) throws SQLException {
-        List<BilanJour> liste = new ArrayList<>();
+        return getDetailsBilanMensuel(annee, mois, null);
+    }
 
-        String sql = """
-            SELECT DATE(date_paiement) AS jour,
-                   COUNT(*) AS nbConsult,
-                   COALESCE(SUM(montant), 0) AS ca
-            FROM paiement
-            WHERE statut = 'VALIDE'
-              AND YEAR(date_paiement) = ?
-              AND MONTH(date_paiement) = ?
-            GROUP BY DATE(date_paiement)
-            ORDER BY jour
-            """;
+    /**
+     * Méthode surchargée : Détails filtrés par médecin (si idMedecin != null)
+     */
+    public List<BilanJour> getDetailsBilanMensuel(int annee, int mois, Integer idMedecin) throws SQLException {
+        List<BilanJour> liste = new ArrayList<>();
+        String sql;
+
+        if (idMedecin != null) {
+            // Filtrer par médecin
+            sql = """
+                SELECT DATE(p.date_paiement) AS jour,
+                       COUNT(p.id) AS nbConsult,
+                       COALESCE(SUM(p.montant), 0) AS ca
+                FROM paiement p
+                JOIN consultation c ON p.id_consultation = c.id
+                WHERE p.statut = 'VALIDE'
+                  AND YEAR(p.date_paiement) = ?
+                  AND MONTH(p.date_paiement) = ?
+                  AND c.id_medecin = ?
+                GROUP BY DATE(p.date_paiement)
+                ORDER BY jour
+                """;
+        } else {
+            // Global
+            sql = """
+                SELECT DATE(date_paiement) AS jour,
+                       COUNT(*) AS nbConsult,
+                       COALESCE(SUM(montant), 0) AS ca
+                FROM paiement
+                WHERE statut = 'VALIDE'
+                  AND YEAR(date_paiement) = ?
+                  AND MONTH(date_paiement) = ?
+                GROUP BY DATE(date_paiement)
+                ORDER BY jour
+                """;
+        }
 
         try (Connection cnx = DBConnection.getConnection();
              PreparedStatement ps = cnx.prepareStatement(sql)) {
 
             ps.setInt(1, annee);
             ps.setInt(2, mois);
+
+            if (idMedecin != null) {
+                ps.setInt(3, idMedecin);
+            }
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {

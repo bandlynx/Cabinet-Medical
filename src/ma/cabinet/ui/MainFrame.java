@@ -30,15 +30,15 @@ public class MainFrame extends JFrame {
         // Onglets communs à tout le monde
         tabbedPane.addTab("Planning RDV", new PanneauRendezVous());
         tabbedPane.addTab("Consultations", new PanneauConsultation());
-        tabbedPane.addTab("Caisse / Paiements", new PanneauPaiement());
+        tabbedPane.addTab("Bilan mensuel", new PanneauBilanMensuel());
 
         // Onglets visibles uniquement pour l'assistant (profil "admin" du cabinet)
         if (u instanceof Assistant) {
             tabbedPane.insertTab("Gestion Patients", null, new PanneauPatient(), null, 0);
-            tabbedPane.insertTab("Gestion Médecins", null, new PanneauMedecin(), null, 1);
-            tabbedPane.insertTab("Catégories Actes", null, new PanneauCategorie(), null, 2);
-            tabbedPane.addTab("Gestion Assistants", new PanneauAssistant());
-            tabbedPane.addTab("Bilan mensuel", new PanneauBilanMensuel());
+            tabbedPane.insertTab("Gestion RDV", null, new PanneauRendezVous(), null, 1);
+            tabbedPane.insertTab("Paiement/caisse", null, new PanneauPaiement(), null, 2);
+            tabbedPane.addTab("Gestion Categorie", new PanneauCategorie());
+            tabbedPane.addTab("Gestion Assistant", new PanneauAssistant());
         }
 
         // Si tu veux donner quelques droits de gestion au médecin :

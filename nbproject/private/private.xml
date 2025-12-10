@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/ismai/OneDrive/Documents/NetBeansProjects/CabinetMedical/src/ma/cabinet/util/DBConnection.java</file>
+            <file>file:/C:/Users/ismai/OneDrive/Documents/NetBeansProjects/CabinetMedical/src/ma/cabinet/Main.java</file>
+            <file>file:/C:/Users/ismai/OneDrive/Documents/NetBeansProjects/CabinetMedical/src/ma/cabinet/model/Patient.java</file>
+            <file>file:/C:/Users/ismai/OneDrive/Documents/NetBeansProjects/CabinetMedical/src/ma/cabinet/dao/PatientDAO.java</file>
+            <file>file:/C:/Users/ismai/OneDrive/Documents/NetBeansProjects/CabinetMedical/src/ma/cabinet/model/Utilisateur.java</file>
+            <file>file:/C:/Users/ismai/OneDrive/Documents/NetBeansProjects/CabinetMedical/src/ma/cabinet/model/Medecin.java</file>
+            <file>file:/C:/Users/ismai/OneDrive/Documents/NetBeansProjects/CabinetMedical/src/ma/cabinet/model/Assistant.java</file>
+            <file>file:/C:/Users/ismai/OneDrive/Documents/NetBeansProjects/CabinetMedical/src/ma/cabinet/ui/RendezVousFrame.java</file>
+            <file>file:/C:/Users/ismai/OneDrive/Documents/NetBeansProjects/CabinetMedical/src/ma/cabinet/ui/PanneauMedecin.java</file>
+            <file>file:/C:/Users/ismai/OneDrive/Documents/NetBeansProjects/CabinetMedical/src/ma/cabinet/ui/PanneauPatient.java</file>
+            <file>file:/C:/Users/ismai/OneDrive/Documents/NetBeansProjects/CabinetMedical/src/ma/cabinet/ui/PanneauAssistant.java</file>
+            <file>file:/C:/Users/ismai/OneDrive/Documents/NetBeansProjects/CabinetMedical/src/ma/cabinet/ui/LoginFrame.java</file>
+            <file>file:/C:/Users/ismai/OneDrive/Documents/NetBeansProjects/CabinetMedical/src/ma/cabinet/dao/UtilisateurDAO.java</file>
+            <file>file:/C:/Users/ismai/OneDrive/Documents/NetBeansProjects/CabinetMedical/src/ma/cabinet/ui/MainFrame.java</file>
+            <file>file:/C:/Users/ismai/OneDrive/Documents/NetBeansProjects/CabinetMedical/src/ma/cabinet/dao/AssistantDAO.java</file>
+            <file>file:/C:/Users/ismai/OneDrive/Documents/NetBeansProjects/CabinetMedical/src/ma/cabinet/dao/RendezVousDAO.java</file>
+            <file>file:/C:/Users/ismai/OneDrive/Documents/NetBeansProjects/CabinetMedical/src/ma/cabinet/ui/PanneauRendezVous.java</file>
+            <file>file:/C:/Users/ismai/OneDrive/Documents/NetBeansProjects/CabinetMedical/src/ma/cabinet/dao/ConsultationDAO.java</file>
+            <file>file:/C:/Users/ismai/OneDrive/Documents/NetBeansProjects/CabinetMedical/src/ma/cabinet/ui/PanneauConsultation.java</file>
+            <file>file:/C:/Users/ismai/OneDrive/Documents/NetBeansProjects/CabinetMedical/src/ma/cabinet/model/BilanMensuel.java</file>
+            <file>file:/C:/Users/ismai/OneDrive/Documents/NetBeansProjects/CabinetMedical/src/ma/cabinet/model/BilanJour.java</file>
+            <file>file:/C:/Users/ismai/OneDrive/Documents/NetBeansProjects/CabinetMedical/src/ma/cabinet/dao/PaiementDAO.java</file>
+            <file>file:/C:/Users/ismai/OneDrive/Documents/NetBeansProjects/CabinetMedical/src/ma/cabinet/ui/PanneauBilanMensuel.java</file>
+            <file>file:/C:/Users/ismai/OneDrive/Documents/NetBeansProjects/CabinetMedical/src/ma/cabinet/dao/MedecinDAO.java</file>
+            <file>file:/C:/Users/ismai/OneDrive/Documents/NetBeansProjects/CabinetMedical/src/ma/cabinet/util/Session.java</file>
+        </group>
+    </open-files>
+</project-private>
