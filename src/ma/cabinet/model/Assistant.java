@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+ 
 package ma.cabinet.model;
 
 public class Assistant extends Utilisateur {
@@ -11,11 +8,11 @@ public class Assistant extends Utilisateur {
     public Assistant() {}
 
     public Assistant(int id, String login, String password, String nom) {
-        super(id, login, password);  // <--- Corrigé
+        super(id, login, password);  
         this.nom = nom;
     }
     public Assistant(String login, String password, String nom) {
-    super(0, login, password);   // id généré automatiquement par MySQL
+    super(0, login, password);   
     this.nom = nom;
 }
 
@@ -29,6 +26,6 @@ public class Assistant extends Utilisateur {
 
     @Override
     public String toString() {
-        return nom;  // Pour affichage dans les ComboBox
+        return nom;  
     }
 }

@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+ 
 package ma.cabinet.ui;
 
 import ma.cabinet.dao.MedecinDAO;
@@ -16,18 +13,18 @@ public class PanneauMedecin extends JPanel {
     private JTable table;
     private DefaultTableModel model;
     
-    // Champs
+    
     private JTextField txtNom = new JTextField();
     private JTextField txtSpecialite = new JTextField();
     private JTextField txtLogin = new JTextField();
-    private JPasswordField txtPassword = new JPasswordField(); // Pour le mot de passe
+    private JPasswordField txtPassword = new JPasswordField(); 
     
     private MedecinDAO medecinDAO = new MedecinDAO();
 
     public PanneauMedecin() {
         setLayout(new BorderLayout());
 
-        // --- HAUT : Formulaire ---
+        
         JPanel formPanel = new JPanel(new GridLayout(5, 2, 5, 5));
         formPanel.setBorder(BorderFactory.createTitledBorder("Nouveau Médecin"));
 
@@ -48,7 +45,7 @@ public class PanneauMedecin extends JPanel {
         topPanel.add(btnAjouter, BorderLayout.SOUTH);
         add(topPanel, BorderLayout.NORTH);
 
-        // --- CENTRE : Tableau ---
+        
         String[] colonnes = {"ID", "Nom", "Spécialité", "Login"};
         model = new DefaultTableModel(colonnes, 0);
         table = new JTable(model);
@@ -73,7 +70,7 @@ public class PanneauMedecin extends JPanel {
 
     private void ajouterMedecin() {
         try {
-            // L'ID est à 0 car il sera auto-généré par la base de données
+            
             Medecin m = new Medecin(0, 
                 txtLogin.getText(), 
                 new String(txtPassword.getPassword()), 
@@ -84,7 +81,7 @@ public class PanneauMedecin extends JPanel {
             medecinDAO.ajouter(m);
             JOptionPane.showMessageDialog(this, "Médecin ajouté !");
             
-            // Reset des champs
+            
             txtNom.setText("");
             txtSpecialite.setText("");
             txtLogin.setText("");

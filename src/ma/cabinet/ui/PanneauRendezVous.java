@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+ 
 package ma.cabinet.ui;
 
 import ma.cabinet.dao.MedecinDAO;
@@ -22,7 +19,7 @@ import java.util.List;
 
 public class PanneauRendezVous extends JPanel {
 
-    // Champs du formulaire
+    
     private JTextField txtDateHeure = new JTextField("2025-01-01 10:00");
     private JComboBox<String> cbStatut =
             new JComboBox<>(new String[]{"PLANIFIE", "ANNULE"});
@@ -30,19 +27,19 @@ public class PanneauRendezVous extends JPanel {
     private JComboBox<Patient> cbPatient = new JComboBox<>();
     private JComboBox<Medecin> cbMedecin = new JComboBox<>();
 
-    // Table + modèle
+    
     private DefaultTableModel model;
     private JTable table;
 
-    // DAO
+    
     private RendezVousDAO rdvDAO = new RendezVousDAO();
     private PatientDAO patientDAO = new PatientDAO();
     private MedecinDAO medecinDAO = new MedecinDAO();
 
-    // Liste en mémoire pour retrouver facilement le RDV sélectionné
+    
     private List<RendezVous> listeRdv = new ArrayList<>();
 
-    // Id du RDV sélectionné (null si rien)
+    
     private Integer idSelectionne = null;
 
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -50,7 +47,7 @@ public class PanneauRendezVous extends JPanel {
     public PanneauRendezVous() {
         setLayout(new BorderLayout());
 
-        // ----- Formulaire haut -----
+        
         JPanel form = new JPanel(new GridLayout(5, 2, 5, 5));
         form.setBorder(BorderFactory.createTitledBorder("Nouveau Rendez-vous"));
 
@@ -69,7 +66,7 @@ public class PanneauRendezVous extends JPanel {
         form.add(new JLabel("Médecin :"));
         form.add(cbMedecin);
 
-        // Boutons
+        
         JButton btnAjouter = new JButton("Ajouter");
         JButton btnModifier = new JButton("Modifier");
         JButton btnAnnuler = new JButton("Annuler RDV");
@@ -87,29 +84,29 @@ public class PanneauRendezVous extends JPanel {
 
         add(top, BorderLayout.NORTH);
 
-        // ----- Tableau -----
+        
         model = new DefaultTableModel(
                 new String[]{"ID", "Date", "Statut", "Motif", "ID Patient", "ID Médecin"}, 0
         );
         table = new JTable(model);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        // Quand on sélectionne une ligne -> remplir le formulaire
+        
         table.getSelectionModel().addListSelectionListener(selectionListener());
 
         add(new JScrollPane(table), BorderLayout.CENTER);
 
-        // Actions des boutons
+        
         btnAjouter.addActionListener(e -> ajouter());
         btnModifier.addActionListener(e -> modifier());
         btnAnnuler.addActionListener(e -> annuler());
         btnRecharger.addActionListener(e -> charger());
 
-        // Chargement initial
+        
         charger();
     }
 
-    // Listener de sélection dans la JTable
+    
     private ListSelectionListener selectionListener() {
         return e -> {
             if (!e.getValueIsAdjusting()) {
@@ -123,13 +120,13 @@ public class PanneauRendezVous extends JPanel {
         };
     }
 
-    // Remplir les champs à partir d'un RDV
+    
     private void remplirFormulaire(RendezVous r) {
         txtDateHeure.setText(sdf.format(r.getDateHeure()));
         cbStatut.setSelectedItem(r.getStatut());
         txtMotif.setText(r.getMotif());
 
-        // Sélection du patient
+        
         for (int i = 0; i < cbPatient.getItemCount(); i++) {
             if (cbPatient.getItemAt(i).getId() == r.getIdPatient()) {
                 cbPatient.setSelectedIndex(i);
@@ -137,7 +134,7 @@ public class PanneauRendezVous extends JPanel {
             }
         }
 
-        // Sélection du médecin
+        
         for (int i = 0; i < cbMedecin.getItemCount(); i++) {
             if (cbMedecin.getItemAt(i).getId() == r.getIdMedecin()) {
                 cbMedecin.setSelectedIndex(i);
@@ -146,22 +143,22 @@ public class PanneauRendezVous extends JPanel {
         }
     }
 
-    // Rechargement complet (patients, médecins, RDV)
+    
     private void charger() {
         try {
-            // Patients
+            
             cbPatient.removeAllItems();
             for (Patient p : patientDAO.findAll()) {
                 cbPatient.addItem(p);
             }
 
-            // Médecins
+            
             cbMedecin.removeAllItems();
             for (Medecin m : medecinDAO.findAll()) {
                 cbMedecin.addItem(m);
             }
 
-            // RDV
+            
             listeRdv = rdvDAO.findAll();
             model.setRowCount(0);
             for (RendezVous r : listeRdv) {
@@ -183,7 +180,7 @@ public class PanneauRendezVous extends JPanel {
         }
     }
 
-    // Ajout d'un nouveau RDV
+    
     private void ajouter() {
         try {
             Date date = sdf.parse(txtDateHeure.getText().trim());
@@ -203,7 +200,7 @@ public class PanneauRendezVous extends JPanel {
         }
     }
 
-    // Modification d'un RDV existant
+    
     private void modifier() {
         if (idSelectionne == null) {
             JOptionPane.showMessageDialog(this, "Sélectionnez un rendez-vous dans le tableau.");
@@ -228,7 +225,7 @@ public class PanneauRendezVous extends JPanel {
         }
     }
 
-    // Annulation (changement de statut)
+    
     private void annuler() {
         if (idSelectionne == null) {
             JOptionPane.showMessageDialog(this, "Sélectionnez un rendez-vous à annuler.");

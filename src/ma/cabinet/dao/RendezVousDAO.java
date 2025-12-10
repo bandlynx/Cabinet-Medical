@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+ 
 package ma.cabinet.dao;
 
 import ma.cabinet.model.RendezVous;
@@ -13,9 +10,9 @@ import java.util.List;
 
 public class RendezVousDAO {
 
-    // ==========================
-    //  INSERT
-    // ==========================
+    
+    
+    
     public void ajouter(RendezVous r) throws SQLException {
         String sql = "INSERT INTO rendezvous (date_heure, statut, motif, id_patient, id_medecin) " +
                      "VALUES (?, ?, ?, ?, ?)";
@@ -33,9 +30,9 @@ public class RendezVousDAO {
         }
     }
 
-    // ==========================
-    //  SELECT * (liste des RDV)
-    // ==========================
+    
+    
+    
     public List<RendezVous> findAll() throws SQLException {
         List<RendezVous> liste = new ArrayList<>();
 
@@ -61,9 +58,9 @@ public class RendezVousDAO {
         return liste;
     }
 
-    // ==========================
-    //  UPDATE (modifier un RDV)
-    // ==========================
+    
+    
+    
     public void update(RendezVous r) throws SQLException {
         String sql = "UPDATE rendezvous " +
                      "SET date_heure = ?, statut = ?, motif = ?, id_patient = ?, id_medecin = ? " +
@@ -83,9 +80,9 @@ public class RendezVousDAO {
         }
     }
 
-    // ==========================
-    //  ANNULER (changer le statut)
-    // ==========================
+    
+    
+    
     public void annuler(int idRdv) throws SQLException {
         String sql = "UPDATE rendezvous SET statut = 'ANNULE' WHERE id = ?";
 
@@ -97,7 +94,7 @@ public class RendezVousDAO {
         }
     }
 
-    // (Optionnel) supprimer définitivement un RDV
+    
     public void delete(int idRdv) throws SQLException {
         String sql = "DELETE FROM rendezvous WHERE id = ?";
 

@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+ 
 package ma.cabinet.dao;
 
 import ma.cabinet.model.Consultation;
@@ -13,7 +10,7 @@ import java.util.List;
 
 public class ConsultationDAO {
 
-    // ================== INSERT ==================
+    
     public void ajouter(Consultation c) throws SQLException {
         String sql = """
             INSERT INTO consultation
@@ -37,7 +34,7 @@ public class ConsultationDAO {
         }
     }
 
-    // ================== FIND ALL ==================
+    
     public List<Consultation> findAll() throws SQLException {
         List<Consultation> liste = new ArrayList<>();
 
@@ -55,7 +52,7 @@ public class ConsultationDAO {
         return liste;
     }
 
-    // ================== FIND BY MEDECIN + DATE ==================
+    
     public List<Consultation> findByMedecinAndDate(int idMedecin, java.sql.Date jour) throws SQLException {
         List<Consultation> liste = new ArrayList<>();
 
@@ -83,7 +80,7 @@ public class ConsultationDAO {
         return liste;
     }
 
-    // ================== MAPPING RESULTSET → CONSULTATION ==================
+    
     private Consultation mapRow(ResultSet rs) throws SQLException {
         Consultation c = new Consultation();
 

@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+ 
 package ma.cabinet.model;
 
 public class CategorieConsultation {
@@ -34,9 +31,9 @@ public class CategorieConsultation {
 
     @Override
     public String toString() {
-        // Ce texte sera affiché dans la comboBox
+        
         return designation;
-        // ou si tu préfères :
-        // return id + " - " + designation;
+        
+        
     }
 }

@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+ 
 package ma.cabinet.model;
 
 public class Medecin extends Utilisateur {
@@ -20,6 +17,6 @@ public class Medecin extends Utilisateur {
 
     @Override
     public String toString() {
-        return getId() + " - " + getNom();  // affiche proprement
+        return getId() + " - " + getNom();  
     }
 }

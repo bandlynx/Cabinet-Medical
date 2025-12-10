@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+ 
 package ma.cabinet.ui;
 
 import ma.cabinet.dao.PaiementDAO;
@@ -17,7 +14,7 @@ import java.util.Date;
 public class PanneauPaiement extends JPanel {
     private DefaultTableModel model;
     private JTextField txtMontant = new JTextField();
-    private JTextField txtIdConsult = new JTextField(); // Idéalement une ComboBox
+    private JTextField txtIdConsult = new JTextField(); 
     private JComboBox<String> cbMode = new JComboBox<>(new String[]{"ESPECES", "CARTE", "CHEQUE"});
     private JComboBox<String> cbStatut = new JComboBox<>(new String[]{"EN_ATTENTE", "VALIDE", "ANNULE"});
 
@@ -67,24 +64,24 @@ public class PanneauPaiement extends JPanel {
 
     private void ajouter() {
         try {
-            // 1) Récupérer l'utilisateur connecté
+            
             Utilisateur current = Session.getCurrentUser();
             if (current == null) {
                 JOptionPane.showMessageDialog(this,
                         "Aucun utilisateur connecté. Merci de vous reconnecter.");
                 return;
             }
-            int idAssistant = current.getId();   // <-- plus de valeur en dur
+            int idAssistant = current.getId();   
 
-            // 2) Lire les champs
+            
             double montant = Double.parseDouble(txtMontant.getText().trim());
             int idConsult = Integer.parseInt(txtIdConsult.getText().trim());
             String mode = cbMode.getSelectedItem().toString();
             String statut = cbStatut.getSelectedItem().toString();
 
-            // 3) Construire l’objet Paiement
+            
             Paiement p = new Paiement(
-                    new Date(),     // Date actuelle
+                    new Date(),     
                     montant,
                     mode,
                     statut,
@@ -92,7 +89,7 @@ public class PanneauPaiement extends JPanel {
                     idAssistant
             );
 
-            // 4) Insert + refresh
+            
             dao.ajouter(p);
             refresh();
             JOptionPane.showMessageDialog(this, "Paiement validé !");

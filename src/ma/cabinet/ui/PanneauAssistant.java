@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+ 
 package ma.cabinet.ui;
 
 import ma.cabinet.dao.AssistantDAO;
@@ -25,7 +22,7 @@ public class PanneauAssistant extends JPanel {
     public PanneauAssistant() {
         setLayout(new BorderLayout());
 
-        // ---------- FORMULAIRE HAUT ----------
+        
         JPanel form = new JPanel(new GridLayout(4, 2, 5, 5));
         form.setBorder(BorderFactory.createTitledBorder("Nouvel assistant"));
 
@@ -54,14 +51,14 @@ public class PanneauAssistant extends JPanel {
 
         add(haut, BorderLayout.NORTH);
 
-        // ---------- TABLEAU ----------
+        
         String[] colonnes = {"ID", "Login", "Nom"};
         model = new DefaultTableModel(colonnes, 0);
         table = new JTable(model);
 
         add(new JScrollPane(table), BorderLayout.CENTER);
 
-        // Chargement initial
+        
         chargerAssistants();
     }
 
@@ -99,7 +96,7 @@ public class PanneauAssistant extends JPanel {
 
             JOptionPane.showMessageDialog(this, "Assistant ajouté avec succès !");
 
-            // reset + reload
+            
             txtLogin.setText("");
             txtPassword.setText("");
             txtNom.setText("");

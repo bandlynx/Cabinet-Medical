@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+ 
 package ma.cabinet.model;
 
 public class Utilisateur {
@@ -18,9 +15,9 @@ public class Utilisateur {
         this.password = password;
         this.nom = nom;
     }
-     private String role; // "ASSISTANT" ou "MEDECIN"
+     private String role; 
     public Utilisateur(int id, String login, String password) {
-    this(id, login, password, "");   // ✔ nom vide, mais plus null
+    this(id, login, password, "");   
 }
       public String getRole() {
         return role;

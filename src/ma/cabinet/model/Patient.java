@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+ 
 package ma.cabinet.model;
 
 public class Patient {
@@ -40,9 +37,9 @@ public class Patient {
 
     @Override
 public String toString() {
-    // Ce qui s'affiche dans la combo
+    
     return id + " - " + nom;
-    // ou si tu veux seulement le nom :
-    // return nom;
+    
+    
 }
 }

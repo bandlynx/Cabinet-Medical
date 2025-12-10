@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+ 
 package ma.cabinet.model;
 
 import java.util.Date;
@@ -11,8 +8,8 @@ public class Paiement {
     private int id;
     private Date datePaiement;
     private double montant;
-    private String modePaiement;   // ESPECES / CARTE / CHEQUE
-    private String statut;         // EN_ATTENTE / VALIDE / ANNULE
+    private String modePaiement;   
+    private String statut;         
 
     private int idConsultation;
     private int idAssistant;

@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+ 
 package ma.cabinet.dao;
 
 import ma.cabinet.model.Assistant;
@@ -20,7 +17,7 @@ public class UtilisateurDAO {
 
         Connection conn = DBConnection.getConnection();
 
-        // 1) Vérifier Assistant
+        
         String sqlAssistant = """
             SELECT id, login, password, nom 
             FROM assistant 
@@ -42,7 +39,7 @@ public class UtilisateurDAO {
             }
         }
 
-        // 2) Vérifier Medecin
+        
         String sqlMedecin = """
             SELECT id, login, password, nom, specialite 
             FROM medecin 
@@ -65,14 +62,14 @@ public class UtilisateurDAO {
             }
         }
 
-        return null; // Aucun utilisateur trouvé
+        return null; 
     }
 
     public String detectRole(int userId) throws SQLException {
 
         Connection conn = DBConnection.getConnection();
 
-        // Assistant ?
+        
         try (PreparedStatement ps = conn.prepareStatement(
                 "SELECT 1 FROM assistant WHERE id = ?")) {
 
@@ -82,7 +79,7 @@ public class UtilisateurDAO {
             if (rs.next()) return "ASSISTANT";
         }
 
-        // Medecin ?
+        
         try (PreparedStatement ps = conn.prepareStatement(
                 "SELECT 1 FROM medecin WHERE id = ?")) {
 

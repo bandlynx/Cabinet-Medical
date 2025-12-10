@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+ 
 package ma.cabinet.dao;
 
 import java.sql.*;
@@ -13,10 +10,7 @@ import ma.cabinet.util.DBConnection;
 
 public class AssistantDAO {
 
-    /**
-     * Ajoute un nouvel assistant dans la table assistant
-     * (login, password, nom).
-     */
+     
     public void ajouter(Assistant a) throws SQLException {
         String sql = "INSERT INTO assistant (login, password, nom) VALUES (?, ?, ?)";
 
@@ -31,9 +25,7 @@ public class AssistantDAO {
         }
     }
 
-    /**
-     * Retourne la liste de tous les assistants.
-     */
+     
     public List<Assistant> findAll() throws SQLException {
         List<Assistant> liste = new ArrayList<>();
 

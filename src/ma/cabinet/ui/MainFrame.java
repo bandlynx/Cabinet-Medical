@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+ 
 package ma.cabinet.ui;
 
 import javax.swing.*;
@@ -27,12 +24,12 @@ public class MainFrame extends JFrame {
 
         JTabbedPane tabbedPane = new JTabbedPane();
 
-        // Onglets communs à tout le monde
+        
         tabbedPane.addTab("Planning RDV", new PanneauRendezVous());
         tabbedPane.addTab("Consultations", new PanneauConsultation());
         tabbedPane.addTab("Bilan mensuel", new PanneauBilanMensuel());
 
-        // Onglets visibles uniquement pour l'assistant (profil "admin" du cabinet)
+        
         if (u instanceof Assistant) {
             tabbedPane.insertTab("Gestion Patients", null, new PanneauPatient(), null, 0);
             tabbedPane.insertTab("Gestion RDV", null, new PanneauRendezVous(), null, 1);
@@ -41,11 +38,11 @@ public class MainFrame extends JFrame {
             tabbedPane.addTab("Gestion Assistant", new PanneauAssistant());
         }
 
-        // Si tu veux donner quelques droits de gestion au médecin :
+        
         if (u instanceof Medecin) {
-            // Par ex. permettre de voir/modifier les patients :
+            
             tabbedPane.insertTab("Gestion Patients", null, new PanneauPatient(), null, 0);
-            // Mais ne pas afficher "Gestion Assistants"
+            
         }
 
         this.add(tabbedPane);

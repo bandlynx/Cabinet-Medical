@@ -1,19 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+ 
+ 
 package ma.cabinet.ui;
 
 import ma.cabinet.dao.PaiementDAO;
 import ma.cabinet.model.BilanMensuel;
 import ma.cabinet.model.BilanJour;
-import ma.cabinet.model.Medecin;           // <--- Import ajouté
-import ma.cabinet.model.Utilisateur;       // <--- Import ajouté
-import ma.cabinet.util.Session;            // <--- Import ajouté
+import ma.cabinet.model.Medecin;           
+import ma.cabinet.model.Utilisateur;       
+import ma.cabinet.util.Session;            
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -35,7 +29,7 @@ public class PanneauBilanMensuel extends JPanel {
     public PanneauBilanMensuel() {
         setLayout(new BorderLayout());
 
-        // --------- Haut : sélection du mois / année ----------
+        
         JPanel top = new JPanel(new GridLayout(2, 4, 5, 5));
         top.setBorder(BorderFactory.createTitledBorder("Paramètres du bilan"));
 
@@ -57,14 +51,14 @@ public class PanneauBilanMensuel extends JPanel {
         top.add(new JLabel("Année :"));
         top.add(spAnnee);
 
-        top.add(new JLabel());  // vide
+        top.add(new JLabel());  
         top.add(btnCalculer);
-        top.add(new JLabel());  // vide
-        top.add(new JLabel());  // vide
+        top.add(new JLabel());  
+        top.add(new JLabel());  
 
         add(top, BorderLayout.NORTH);
 
-        // --------- Centre : résumé + détails ----------
+        
         JPanel center = new JPanel(new BorderLayout());
 
         JPanel resume = new JPanel(new GridLayout(2, 2, 5, 5));
@@ -91,23 +85,23 @@ public class PanneauBilanMensuel extends JPanel {
             int mois = (Integer) cbMois.getSelectedItem();
             int annee = (Integer) spAnnee.getValue();
 
-            // 1. Récupération de l'utilisateur connecté
+            
             Utilisateur currentUser = Session.getCurrentUser();
             Integer idMedecin = null; 
 
-            // 2. Si c'est un médecin, on récupère son ID pour filtrer
+            
             if (currentUser instanceof Medecin) {
                 idMedecin = currentUser.getId();
             }
 
-            // 3. Appel au DAO (avec l'ID médecin s'il existe, ou null pour l'admin)
             
-            // --- Résumé ---
+            
+            
             BilanMensuel bilan = paiementDAO.getBilanMensuel(annee, mois, idMedecin);
             lblNbConsult.setText(String.valueOf(bilan.getNbConsultations()));
             lblCA.setText(String.format("%.2f", bilan.getChiffreAffaires()));
 
-            // --- Détails par jour ---
+            
             modelDetails.setRowCount(0);
             List<BilanJour> details = paiementDAO.getDetailsBilanMensuel(annee, mois, idMedecin);
             

@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+ 
 package ma.cabinet.ui;
 
 import ma.cabinet.dao.UtilisateurDAO;
@@ -56,7 +53,7 @@ public class LoginFrame extends JFrame {
                 return;
             }
 
-            // 🔐 Authentification (assistant OU médecin)
+            
             Utilisateur user = userDAO.authenticate(login, pwd);
 
             if (user == null) {
@@ -65,14 +62,14 @@ public class LoginFrame extends JFrame {
                 return;
             }
 
-            // ✅ On mémorise l'utilisateur connecté (Assistant ou Medecin)
+            
             Session.setCurrentUser(user);
 
-            // ✅ On ouvre la fenêtre principale adaptée au rôle
+            
             MainFrame main = new MainFrame();
             main.setVisible(true);
 
-            // On ferme la fenêtre de login
+            
             dispose();
 
         } catch (Exception ex) {

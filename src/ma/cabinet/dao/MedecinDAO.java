@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+ 
 package ma.cabinet.dao;
 
 import java.sql.*;
@@ -13,13 +10,13 @@ import ma.cabinet.util.DBConnection;
 public class MedecinDAO {
 
     public void ajouter(Medecin m) throws SQLException {
-        // 1) Insérer dans utilisateur
+        
         String sqlUser = "INSERT INTO utilisateur (login, password) VALUES (?, ?)";
         String sqlMed = "INSERT INTO medecin (id, nom, specialite) VALUES (?, ?, ?)";
 
         try (Connection cnx = DBConnection.getConnection()) {
 
-            // désactiver l’auto-commit pour faire une mini transaction
+            
             cnx.setAutoCommit(false);
 
             try (PreparedStatement psUser = cnx.prepareStatement(sqlUser, Statement.RETURN_GENERATED_KEYS)) {
@@ -28,7 +25,7 @@ public class MedecinDAO {
                 psUser.setString(2, m.getPassword());
                 psUser.executeUpdate();
 
-                // récupérer l'id généré
+                
                 int idGenere;
                 try (ResultSet rs = psUser.getGeneratedKeys()) {
                     if (rs.next()) {
@@ -39,7 +36,7 @@ public class MedecinDAO {
                     }
                 }
 
-                // 2) Insérer dans medecin
+                
                 try (PreparedStatement psMed = cnx.prepareStatement(sqlMed)) {
                     psMed.setInt(1, idGenere);
                     psMed.setString(2, m.getNom());
@@ -75,7 +72,7 @@ public class MedecinDAO {
     rs.getInt("id"),
     rs.getString("login"),
     rs.getString("password"),
-    rs.getString("nom"),          // ✔ IMPORTANT !
+    rs.getString("nom"),          
     rs.getString("specialite")
 );
                 liste.add(m);

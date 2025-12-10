@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+ 
 package ma.cabinet.ui;
 
 import ma.cabinet.dao.*;
@@ -24,7 +21,7 @@ public class PanneauConsultation extends JPanel {
     private JComboBox<Patient> cbPatient = new JComboBox<>();
     private JComboBox<Medecin> cbMedecin = new JComboBox<>();
     private JComboBox<CategorieConsultation> cbCategorie = new JComboBox<>();
-    private JComboBox<RendezVous> cbRdv = new JComboBox<>(); // Nécessite toString() dans RendezVous
+    private JComboBox<RendezVous> cbRdv = new JComboBox<>(); 
 
     private ConsultationDAO consultDAO = new ConsultationDAO();
     private PatientDAO patientDAO = new PatientDAO();
@@ -35,7 +32,7 @@ public class PanneauConsultation extends JPanel {
     public PanneauConsultation() {
         setLayout(new BorderLayout());
 
-        // date par défaut : aujourd'hui
+        
         txtDate.setText(new SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()));
 
         JPanel form = new JPanel(new GridLayout(7, 2));
@@ -66,7 +63,7 @@ public class PanneauConsultation extends JPanel {
 
     private void charger() {
         try {
-            // Remplir les combos
+            
             cbPatient.removeAllItems();
             for (Patient p : patientDAO.findAll()) cbPatient.addItem(p);
 
@@ -79,17 +76,17 @@ public class PanneauConsultation extends JPanel {
             cbRdv.removeAllItems();
             for (RendezVous r : rdvDAO.findAll()) cbRdv.addItem(r);
 
-            // Charger les consultations
+            
             model.setRowCount(0);
 
             Utilisateur u = Session.getCurrentUser();
-            List<Consultation> data = consultDAO.findAll(); // On récupère tout d'abord
+            List<Consultation> data = consultDAO.findAll(); 
 
             for (Consultation c : data) {
-                // FILTRAGE JAVA : Si c'est un médecin, on ne montre que les siennes
+                
                 if (u instanceof Medecin) {
                     if (c.getIdMedecin() != u.getId()) {
-                        continue; // On saute ce tour de boucle si ce n'est pas ce médecin
+                        continue; 
                     }
                 }
 

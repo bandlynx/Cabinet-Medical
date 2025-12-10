@@ -1,11 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+ 
+ 
 package ma.cabinet.dao;
 
 import ma.cabinet.model.BilanMensuel;
@@ -68,25 +62,21 @@ public class PaiementDAO {
         return liste;
     }
 
-    // =============================================================
-    //                      BILAN MENSUEL (Global)
-    // =============================================================
+    
+    
+    
 
-    /**
-     * Méthode originale : Bilan global (pour l'assistant)
-     */
+     
     public BilanMensuel getBilanMensuel(int annee, int mois) throws SQLException {
         return getBilanMensuel(annee, mois, null);
     }
 
-    /**
-     * Méthode surchargée : Bilan filtré par médecin (si idMedecin != null)
-     */
+     
     public BilanMensuel getBilanMensuel(int annee, int mois, Integer idMedecin) throws SQLException {
         String sql;
 
         if (idMedecin != null) {
-            // Filtrer par médecin via la table consultation
+            
             sql = """
                 SELECT COUNT(p.id) AS nbConsult,
                        COALESCE(SUM(p.montant), 0) AS ca
@@ -98,7 +88,7 @@ public class PaiementDAO {
                   AND c.id_medecin = ?
                 """;
         } else {
-            // Global (Assistant)
+            
             sql = """
                 SELECT COUNT(*) AS nbConsult,
                        COALESCE(SUM(montant), 0) AS ca
@@ -130,26 +120,22 @@ public class PaiementDAO {
         return new BilanMensuel(annee, mois, 0, 0.0);
     }
 
-    // =============================================================
-    //                      DÉTAILS JOURNALIERS
-    // =============================================================
+    
+    
+    
 
-    /**
-     * Méthode originale : Détails globaux (pour l'assistant)
-     */
+     
     public List<BilanJour> getDetailsBilanMensuel(int annee, int mois) throws SQLException {
         return getDetailsBilanMensuel(annee, mois, null);
     }
 
-    /**
-     * Méthode surchargée : Détails filtrés par médecin (si idMedecin != null)
-     */
+     
     public List<BilanJour> getDetailsBilanMensuel(int annee, int mois, Integer idMedecin) throws SQLException {
         List<BilanJour> liste = new ArrayList<>();
         String sql;
 
         if (idMedecin != null) {
-            // Filtrer par médecin
+            
             sql = """
                 SELECT DATE(p.date_paiement) AS jour,
                        COUNT(p.id) AS nbConsult,
@@ -164,7 +150,7 @@ public class PaiementDAO {
                 ORDER BY jour
                 """;
         } else {
-            // Global
+            
             sql = """
                 SELECT DATE(date_paiement) AS jour,
                        COUNT(*) AS nbConsult,
@@ -190,7 +176,7 @@ public class PaiementDAO {
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    String jour = rs.getString("jour"); // "2025-12-05"
+                    String jour = rs.getString("jour"); 
                     int nb = rs.getInt("nbConsult");
                     double ca = rs.getDouble("ca");
                     liste.add(new BilanJour(jour, nb, ca));

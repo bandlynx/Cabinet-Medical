@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+ 
 package ma.cabinet.ui;
 
 import ma.cabinet.dao.PatientDAO;
@@ -16,7 +13,7 @@ public class PanneauPatient extends JPanel {
     private JTable table;
     private DefaultTableModel model;
     
-    // Champs du formulaire
+    
     private JTextField txtNom = new JTextField();
     private JTextField txtTel = new JTextField();
     private JTextField txtEmail = new JTextField();
@@ -26,7 +23,7 @@ public class PanneauPatient extends JPanel {
     public PanneauPatient() {
         setLayout(new BorderLayout());
 
-        // --- HAUT : Formulaire d'ajout ---
+        
         JPanel formPanel = new JPanel(new GridLayout(4, 2, 5, 5));
         formPanel.setBorder(BorderFactory.createTitledBorder("Nouveau Patient"));
 
@@ -45,7 +42,7 @@ public class PanneauPatient extends JPanel {
         topPanel.add(btnAjouter, BorderLayout.SOUTH);
         add(topPanel, BorderLayout.NORTH);
 
-        // --- CENTRE : Tableau ---
+        
         String[] colonnes = {"ID", "Nom", "Téléphone", "Email"};
         model = new DefaultTableModel(colonnes, 0);
         table = new JTable(model);
